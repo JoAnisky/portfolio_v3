@@ -9,9 +9,19 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
+###> phpunit/phpunit ###
+/phpunit.xml
+/.phpunit.cache/
+###< phpunit/phpunit ###
+
+###> symfony/asset-mapper ###
+/public/assets/
+/assets/vendor/
+###< symfony/asset-mapper ###
+
 # Docker
 /.docker/.env.docker.dev
-/.docker/env.docker.dev
+/.docker/.env.docker.prod
 
 # IDE / OS
 .idea
@@ -21,10 +31,3 @@
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###
-
-###> phpunit/phpunit ###
-/phpunit.xml
-/.phpunit.cache/
-###< phpunit/phpunit ###
-/test-results
-
