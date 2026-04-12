@@ -1,11 +1,11 @@
 services:
 
-  portfolio-api:
+  portfoliov3-api:
     build:
       context: .
       dockerfile: .docker/Dockerfile
       target: ${APP_ENV:-dev}
-    container_name: portfolio-api
+    container_name: portfoliov3-api
     environment:
       APP_ENV: ${APP_ENV:-dev}
       APP_DEBUG: ${APP_DEBUG:-1}
