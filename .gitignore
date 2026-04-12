@@ -11,7 +11,7 @@
 
 # Docker
 /.docker/.env.docker.dev
-/.docker/.env.docker.prod
+/.docker/env.docker.dev
 
 # IDE / OS
 .idea
@@ -27,3 +27,4 @@
 /.phpunit.cache/
 ###< phpunit/phpunit ###
 /test-results
+
