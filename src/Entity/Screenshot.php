@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: ScreenshotRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Screenshot
 {
     #[ORM\Id]
@@ -23,13 +24,31 @@ class Screenshot
     private ?string $alt = null;
 
     #[ORM\Column]
-    private ?bool $isCover = null;
+    private bool $isCover = false;
 
     #[ORM\Column]
-    private ?int $position = null;
+    private int $position = 0;
 
     #[ORM\ManyToOne(inversedBy: 'screenshots')]
-    private ?Project $project = null;
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
+    private Project $project;
+
+    /**
+     * Ensure only one screenshot is used as cover
+     * @return void
+     */
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function enforceSingleCover(): void
+    {
+        if ($this->isCover && $this->project !== null) {
+            foreach ($this->project->getScreenshots() as $screenshot) {
+                if ($screenshot !== $this && $screenshot->isCover()) {
+                    $screenshot->setIsCover(false);
+                }
+            }
+        }
+    }
 
     public function getId(): Uuid
     {
@@ -84,15 +103,14 @@ class Screenshot
         return $this;
     }
 
-    public function getProject(): ?Project
+    public function getProject(): Project
     {
         return $this->project;
     }
 
-    public function setProject(?Project $project): static
+    public function setProject(Project $project): static
     {
         $this->project = $project;
-
         return $this;
     }
 }

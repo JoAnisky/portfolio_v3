@@ -232,7 +232,7 @@
       <workItem from="1776024040973" duration="2406000" />
       <workItem from="1776026492495" duration="914000" />
       <workItem from="1776061630731" duration="4581000" />
-      <workItem from="1776071162145" duration="773000" />
+      <workItem from="1776071162145" duration="1203000" />
     </task>
     <task id="LOCAL-00001" summary="[ADD] Base files">
       <option name="closed" value="true" />
@@ -370,7 +370,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776066695884</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="[UPDATE] Project : relation + CREATED ProjectContext enum">
+      <option name="closed" value="true" />
+      <created>1776071972043</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1776071972043</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -408,6 +416,7 @@
     <MESSAGE value="[CREATE] ProjectHighlight &amp;nd ProjectFeature entity + migration" />
     <MESSAGE value="[ADD] Tag : uuid + migration" />
     <MESSAGE value="[ADD] Entities : uuid + migration" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ADD] Entities : uuid + migration" />
+    <MESSAGE value="[UPDATE] Project : relation + CREATED ProjectContext enum" />
+    <option name="LAST_COMMIT_MESSAGE" value="[UPDATE] Project : relation + CREATED ProjectContext enum" />
   </component>
 </project>
