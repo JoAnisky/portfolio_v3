@@ -224,7 +224,7 @@
       <updated>1776024039957</updated>
       <workItem from="1776024040973" duration="2406000" />
       <workItem from="1776026492495" duration="914000" />
-      <workItem from="1776061630731" duration="1067000" />
+      <workItem from="1776061630731" duration="1373000" />
     </task>
     <task id="LOCAL-00001" summary="[ADD] Base files">
       <option name="closed" value="true" />
@@ -306,7 +306,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776062610901</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="[CREATE] Tag entity + migration">
+      <option name="closed" value="true" />
+      <created>1776062742163</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1776062742163</updated>
+    </task>
+    <task id="LOCAL-00012" summary="[CREATE] Technology and Client entity + migration">
+      <option name="closed" value="true" />
+      <created>1776062958128</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1776062958128</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,6 +348,8 @@
     <MESSAGE value="[REMOVED] compose.override.yaml" />
     <MESSAGE value="[ADD] packages : api-platform, easy-admin, intervention/image" />
     <MESSAGE value="[ADD] Symfony DB" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ADD] Symfony DB" />
+    <MESSAGE value="[CREATE] Tag entity + migration" />
+    <MESSAGE value="[CREATE] Technology and Client entity + migration" />
+    <option name="LAST_COMMIT_MESSAGE" value="[CREATE] Technology and Client entity + migration" />
   </component>
 </project>
