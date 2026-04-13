@@ -6,6 +6,7 @@ use App\Entity\Project;
 use App\Enum\ProjectContext;
 use App\Form\ProjectFeatureType;
 use App\Form\ProjectHighlightType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
@@ -21,6 +22,13 @@ class ProjectCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Project::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return parent::configureCrud($crud)
+            ->setEntityLabelInSingular('Projet')
+            ->setEntityLabelInPlural('Projets');
     }
 
     public function configureFields(string $pageName): iterable
