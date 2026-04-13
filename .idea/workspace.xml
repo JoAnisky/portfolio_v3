@@ -239,7 +239,7 @@
       <workItem from="1776024040973" duration="2406000" />
       <workItem from="1776026492495" duration="914000" />
       <workItem from="1776061630731" duration="4581000" />
-      <workItem from="1776071162145" duration="7753000" />
+      <workItem from="1776071162145" duration="9313000" />
     </task>
     <task id="LOCAL-00001" summary="[ADD] Base files">
       <option name="closed" value="true" />
@@ -449,7 +449,39 @@
       <option name="project" value="LOCAL" />
       <updated>1776084511422</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="[ADD] __toString() methods">
+      <option name="closed" value="true" />
+      <created>1776085240733</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1776085240733</updated>
+    </task>
+    <task id="LOCAL-00028" summary="[CREATED] ProjectFeature/Hightlight Type">
+      <option name="closed" value="true" />
+      <created>1776085275380</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1776085275380</updated>
+    </task>
+    <task id="LOCAL-00029" summary="[CREATED] ProjectCrudController  &amp; added to DashboardController">
+      <option name="closed" value="true" />
+      <created>1776085313064</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1776085313064</updated>
+    </task>
+    <task id="LOCAL-00030" summary="[ADD] french translations">
+      <option name="closed" value="true" />
+      <created>1776086051710</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1776086051710</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -467,10 +499,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[REMOVED] postgresql" />
-    <MESSAGE value="[REMOVED] compose.override.yaml" />
-    <MESSAGE value="[ADD] packages : api-platform, easy-admin, intervention/image" />
-    <MESSAGE value="[ADD] Symfony DB" />
     <MESSAGE value="[CREATE] Tag entity + migration" />
     <MESSAGE value="[CREATE] Technology &amp; Client entity + migrations" />
     <MESSAGE value="[CREATE] Screenshot &amp; Project entity + migrations" />
@@ -492,6 +520,10 @@
     <MESSAGE value="[ADD] Admin Dashboard and SecurityController" />
     <MESSAGE value="[FIX] User entity serialization" />
     <MESSAGE value="[ADD] Client/Tag/Technology CrudController + UPDATE DashboardController" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ADD] Client/Tag/Technology CrudController + UPDATE DashboardController" />
+    <MESSAGE value="[ADD] __toString() methods" />
+    <MESSAGE value="[CREATED] ProjectFeature/Hightlight Type" />
+    <MESSAGE value="[CREATED] ProjectCrudController  &amp; added to DashboardController" />
+    <MESSAGE value="[ADD] french translations" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ADD] french translations" />
   </component>
 </project>
