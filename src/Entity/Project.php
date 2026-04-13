@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use App\Enum\ProjectContext;
 use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
@@ -20,7 +23,7 @@ class Project
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private ?\DateTimeImmutable $date = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -32,8 +35,60 @@ class Project
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $context = null;
+    #[ORM\Column(length: 20, enumType: ProjectContext::class)]
+    private ?ProjectContext $context = null;
+
+    /**
+     * @var Collection<int, Screenshot>
+     */
+    #[ORM\OneToMany(targetEntity: Screenshot::class, mappedBy: 'project', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[ORM\OrderBy(['position' => 'ASC'])]
+    private Collection $screenshots;
+
+    /**
+     * @var Collection<int, ProjectFeature>
+     */
+    #[ORM\OneToMany(targetEntity: ProjectFeature::class, mappedBy: 'project', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[ORM\OrderBy(['position' => 'ASC'])]
+    private Collection $features;
+
+    /**
+     * @var Collection<int, ProjectHighlight>
+     */
+    #[ORM\OneToMany(targetEntity: ProjectHighlight::class, mappedBy: 'project', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[ORM\OrderBy(['position' => 'ASC'])]
+    private Collection $highlights;
+
+    /**
+     * @var Collection<int, Client>
+     */
+    #[ORM\ManyToMany(targetEntity: Client::class, inversedBy: 'projects')]
+    #[ORM\JoinTable(name: 'project_client')]
+    private Collection $clients;
+
+    /**
+     * @var Collection<int, Tag>
+     */
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'projects')]
+    #[ORM\JoinTable(name: 'project_tag')]
+    private Collection $tags;
+
+    /**
+     * @var Collection<int, Technology>
+     */
+    #[ORM\ManyToMany(targetEntity: Technology::class, inversedBy: 'projects')]
+    #[ORM\JoinTable(name: 'project_technology')]
+    private Collection $technologies;
+
+    public function __construct()
+    {
+        $this->screenshots = new ArrayCollection();
+        $this->features = new ArrayCollection();
+        $this->highlights = new ArrayCollection();
+        $this->clients = new ArrayCollection();
+        $this->tags = new ArrayCollection();
+        $this->technologies = new ArrayCollection();
+    }
 
     public function getId(): Uuid
     {
@@ -100,14 +155,176 @@ class Project
         return $this;
     }
 
-    public function getContext(): ?string
+    public function getContext(): ?ProjectContext
     {
         return $this->context;
     }
 
-    public function setContext(string $context): static
+    public function setContext(ProjectContext $context): static
     {
         $this->context = $context;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Screenshot>
+     */
+    public function getScreenshots(): Collection
+    {
+        return $this->screenshots;
+    }
+
+    public function addScreenshot(Screenshot $screenshot): static
+    {
+        if (!$this->screenshots->contains($screenshot)) {
+            $this->screenshots->add($screenshot);
+            $screenshot->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScreenshot(Screenshot $screenshot): static
+    {
+        if ($this->screenshots->removeElement($screenshot)) {
+            // set the owning side to null (unless already changed)
+            if ($screenshot->getProject() === $this) {
+                $screenshot->setProject(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProjectFeature>
+     */
+    public function getFeatures(): Collection
+    {
+        return $this->features;
+    }
+
+    public function addFeature(ProjectFeature $feature): static
+    {
+        if (!$this->features->contains($feature)) {
+            $this->features->add($feature);
+            $feature->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeature(ProjectFeature $feature): static
+    {
+        if ($this->features->removeElement($feature)) {
+            // set the owning side to null (unless already changed)
+            if ($feature->getProject() === $this) {
+                $feature->setProject(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProjectHighlight>
+     */
+    public function getHighlights(): Collection
+    {
+        return $this->highlights;
+    }
+
+    public function addHighlight(ProjectHighlight $highlight): static
+    {
+        if (!$this->highlights->contains($highlight)) {
+            $this->highlights->add($highlight);
+            $highlight->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHighlight(ProjectHighlight $highlight): static
+    {
+        if ($this->highlights->removeElement($highlight)) {
+            // set the owning side to null (unless already changed)
+            if ($highlight->getProject() === $this) {
+                $highlight->setProject(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Client>
+     */
+    public function getClients(): Collection
+    {
+        return $this->clients;
+    }
+
+    public function addClient(Client $client): static
+    {
+        if (!$this->clients->contains($client)) {
+            $this->clients->add($client);
+        }
+
+        return $this;
+    }
+
+    public function removeClient(Client $client): static
+    {
+        $this->clients->removeElement($client);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tag>
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag): static
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags->add($tag);
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): static
+    {
+        $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Technology>
+     */
+    public function getTechnologies(): Collection
+    {
+        return $this->technologies;
+    }
+
+    public function addTechnology(Technology $technology): static
+    {
+        if (!$this->technologies->contains($technology)) {
+            $this->technologies->add($technology);
+        }
+
+        return $this;
+    }
+
+    public function removeTechnology(Technology $technology): static
+    {
+        $this->technologies->removeElement($technology);
 
         return $this;
     }

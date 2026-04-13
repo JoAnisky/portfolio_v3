@@ -28,6 +28,9 @@ class Screenshot
     #[ORM\Column]
     private ?int $position = null;
 
+    #[ORM\ManyToOne(inversedBy: 'screenshots')]
+    private ?Project $project = null;
+
     public function getId(): Uuid
     {
         return $this->id;
@@ -77,6 +80,18 @@ class Screenshot
     public function setPosition(int $position): static
     {
         $this->position = $position;
+
+        return $this;
+    }
+
+    public function getProject(): ?Project
+    {
+        return $this->project;
+    }
+
+    public function setProject(?Project $project): static
+    {
+        $this->project = $project;
 
         return $this;
     }
