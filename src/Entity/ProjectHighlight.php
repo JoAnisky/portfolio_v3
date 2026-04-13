@@ -20,11 +20,11 @@ class ProjectHighlight
     private ?string $label = null;
 
     #[ORM\Column]
-    private ?int $position = null;
+    private int $position = 0;
 
     #[ORM\ManyToOne(inversedBy: 'highlights')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Project $project = null;
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
+    private Project $project;
 
     public function getId(): Uuid
     {
@@ -55,12 +55,12 @@ class ProjectHighlight
         return $this;
     }
 
-    public function getProject(): ?Project
+    public function getProject(): Project
     {
         return $this->project;
     }
 
-    public function setProject(?Project $project): static
+    public function setProject(Project $project): static
     {
         $this->project = $project;
 
