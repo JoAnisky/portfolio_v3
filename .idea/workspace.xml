@@ -239,7 +239,7 @@
       <workItem from="1776024040973" duration="2406000" />
       <workItem from="1776026492495" duration="914000" />
       <workItem from="1776061630731" duration="4581000" />
-      <workItem from="1776071162145" duration="5991000" />
+      <workItem from="1776071162145" duration="7011000" />
     </task>
     <task id="LOCAL-00001" summary="[ADD] Base files">
       <option name="closed" value="true" />
@@ -425,7 +425,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776082350599</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="[ADD] Admin Dashboard and SecurityController">
+      <option name="closed" value="true" />
+      <created>1776083497316</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1776083497316</updated>
+    </task>
+    <task id="LOCAL-00025" summary="[FIX] User entity serialization">
+      <option name="closed" value="true" />
+      <created>1776083519747</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1776083519747</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,8 +459,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[ADD] gitignore : env.docker.dev" />
-    <MESSAGE value="[ADD] Makefile and UPDATE container name" />
     <MESSAGE value="[UPDATE] container name for Traefik" />
     <MESSAGE value="[REMOVED] postgresql" />
     <MESSAGE value="[REMOVED] compose.override.yaml" />
@@ -468,6 +482,8 @@
     <MESSAGE value="[ADD] migration : entities with relations and UUID (Project, Client, Tag, Technology, Screenshot, ProjectFeature, ProjectHighlight)" />
     <MESSAGE value="[ADD] User entity + migration" />
     <MESSAGE value="[ADD] symfony/apache-pack" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ADD] symfony/apache-pack" />
+    <MESSAGE value="[ADD] Admin Dashboard and SecurityController" />
+    <MESSAGE value="[FIX] User entity serialization" />
+    <option name="LAST_COMMIT_MESSAGE" value="[FIX] User entity serialization" />
   </component>
 </project>
