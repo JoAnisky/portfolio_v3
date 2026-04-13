@@ -224,7 +224,7 @@
       <updated>1776024039957</updated>
       <workItem from="1776024040973" duration="2406000" />
       <workItem from="1776026492495" duration="914000" />
-      <workItem from="1776061630731" duration="1781000" />
+      <workItem from="1776061630731" duration="3448000" />
     </task>
     <task id="LOCAL-00001" summary="[ADD] Base files">
       <option name="closed" value="true" />
@@ -330,7 +330,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776063326012</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="[CREATE] ProjectHighlight &amp;nd ProjectFeature entity + migration">
+      <option name="closed" value="true" />
+      <created>1776063449703</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1776063449703</updated>
+    </task>
+    <task id="LOCAL-00015" summary="[CREATE] ProjectHighlight &amp;nd ProjectFeature entity + migration">
+      <option name="closed" value="true" />
+      <created>1776064848810</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1776064848810</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,8 +373,15 @@
     <MESSAGE value="[ADD] packages : api-platform, easy-admin, intervention/image" />
     <MESSAGE value="[ADD] Symfony DB" />
     <MESSAGE value="[CREATE] Tag entity + migration" />
-    <MESSAGE value="[CREATE] Technology and Client entity + migration" />
-    <MESSAGE value="[CREATE] Screenshot entity + migration" />
-    <option name="LAST_COMMIT_MESSAGE" value="[CREATE] Screenshot entity + migration" />
+    <MESSAGE value="[CREATE] Technology &amp; Client entity + migrations" />
+    <MESSAGE value="[CREATE] Screenshot &amp; Project entity + migrations" />
+    <MESSAGE value="[CREATE] ProjectHighlight &amp; ProjectFeature entity + migrations" />
+    <MESSAGE value="[CREATE] Screenshot and Project entity + migrations" />
+    <MESSAGE value="[CREATE] Technology and Client entity + migrations" />
+    <MESSAGE value="[CREATE] ProjectHighlight &amp; ProjectFeature entity + migrations" />
+    <MESSAGE value="[CREATE] Screenshot &amp; Project entity + migrations" />
+    <MESSAGE value="[CREATE] Technology &amp; Client entity + migrations" />
+    <MESSAGE value="[CREATE] ProjectHighlight &amp;nd ProjectFeature entity + migration" />
+    <option name="LAST_COMMIT_MESSAGE" value="[CREATE] ProjectHighlight &amp;nd ProjectFeature entity + migration" />
   </component>
 </project>
