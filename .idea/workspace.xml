@@ -239,7 +239,7 @@
       <workItem from="1776024040973" duration="2406000" />
       <workItem from="1776026492495" duration="914000" />
       <workItem from="1776061630731" duration="4581000" />
-      <workItem from="1776071162145" duration="7011000" />
+      <workItem from="1776071162145" duration="7753000" />
     </task>
     <task id="LOCAL-00001" summary="[ADD] Base files">
       <option name="closed" value="true" />
@@ -441,7 +441,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776083519747</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="[ADD] Client/Tag/Technology CrudController + UPDATE DashboardController">
+      <option name="closed" value="true" />
+      <created>1776084511422</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1776084511422</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,7 +467,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[UPDATE] container name for Traefik" />
     <MESSAGE value="[REMOVED] postgresql" />
     <MESSAGE value="[REMOVED] compose.override.yaml" />
     <MESSAGE value="[ADD] packages : api-platform, easy-admin, intervention/image" />
@@ -484,6 +491,7 @@
     <MESSAGE value="[ADD] symfony/apache-pack" />
     <MESSAGE value="[ADD] Admin Dashboard and SecurityController" />
     <MESSAGE value="[FIX] User entity serialization" />
-    <option name="LAST_COMMIT_MESSAGE" value="[FIX] User entity serialization" />
+    <MESSAGE value="[ADD] Client/Tag/Technology CrudController + UPDATE DashboardController" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ADD] Client/Tag/Technology CrudController + UPDATE DashboardController" />
   </component>
 </project>
