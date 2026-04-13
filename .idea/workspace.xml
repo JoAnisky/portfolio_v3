@@ -155,6 +155,16 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
       <path value="$PROJECT_DIR$/vendor/doctrine/migrations" />
       <path value="$PROJECT_DIR$/vendor/doctrine/persistence" />
+      <path value="$PROJECT_DIR$/vendor/api-platform/core" />
+      <path value="$PROJECT_DIR$/vendor/willdurand/negotiation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/ux-twig-component" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/vendor/twig/html-extra" />
+      <path value="$PROJECT_DIR$/vendor/easycorp/easyadmin-bundle" />
+      <path value="$PROJECT_DIR$/vendor/intervention/image" />
+      <path value="$PROJECT_DIR$/vendor/intervention/gif" />
+      <path value="$PROJECT_DIR$/vendor/nelmio/cors-bundle" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -214,6 +224,7 @@
       <updated>1776024039957</updated>
       <workItem from="1776024040973" duration="2406000" />
       <workItem from="1776026492495" duration="914000" />
+      <workItem from="1776061630731" duration="369000" />
     </task>
     <task id="LOCAL-00001" summary="[ADD] Base files">
       <option name="closed" value="true" />
@@ -271,7 +282,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776027401363</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="[ADD] packages : api-platform, easy-admin, intervention/image">
+      <option name="closed" value="true" />
+      <created>1776061817359</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1776061817359</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[ADD] packages : api-platform, easy-admin, intervention/image">
+      <option name="closed" value="true" />
+      <created>1776061862306</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1776061862306</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,6 +322,7 @@
     <MESSAGE value="[UPDATE] container name for Traefik" />
     <MESSAGE value="[REMOVED] postgresql" />
     <MESSAGE value="[REMOVED] compose.override.yaml" />
-    <option name="LAST_COMMIT_MESSAGE" value="[REMOVED] compose.override.yaml" />
+    <MESSAGE value="[ADD] packages : api-platform, easy-admin, intervention/image" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ADD] packages : api-platform, easy-admin, intervention/image" />
   </component>
 </project>
