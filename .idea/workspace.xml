@@ -34,10 +34,10 @@
     &quot;accountId&quot;: &quot;d4b45bd8-0812-4d04-912f-bff904447769&quot;
   }
 }</component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:/php/php-8.3.13-Win32-vs16-x64/php.exe">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
@@ -187,32 +187,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm": "Docker",
-    "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm": "Docker",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "//wsl.localhost/Ubuntu/home/anisky/www/portfolio_jl_v3/back",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm&quot;: &quot;Docker&quot;,
+    &quot;credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm&quot;: &quot;Docker&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;//wsl.localhost/Ubuntu/home/anisky/www/portfolio_jl_v3/back&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mariadb"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;
     ],
-    "GitStage.ChangesTree.GroupingKeys": [
-      "directory",
-      "module",
-      "repository"
+    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;,
+      &quot;repository&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="\\wsl.localhost\Ubuntu\home\anisky\www\portfolio_jl_v3\back" />
@@ -239,7 +239,9 @@
       <workItem from="1776024040973" duration="2406000" />
       <workItem from="1776026492495" duration="914000" />
       <workItem from="1776061630731" duration="4581000" />
-      <workItem from="1776071162145" duration="9313000" />
+      <workItem from="1776071162145" duration="9393000" />
+      <workItem from="1776540461419" duration="645000" />
+      <workItem from="1776610880377" duration="3044000" />
     </task>
     <task id="LOCAL-00001" summary="[ADD] Base files">
       <option name="closed" value="true" />
@@ -481,7 +483,55 @@
       <option name="project" value="LOCAL" />
       <updated>1776086051710</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="[ADD] ScreenshotProcessor V1">
+      <option name="closed" value="true" />
+      <created>1776086780175</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1776086780175</updated>
+    </task>
+    <task id="LOCAL-00032" summary="[ADD] Webp support">
+      <option name="closed" value="true" />
+      <created>1776613660411</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1776613660411</updated>
+    </task>
+    <task id="LOCAL-00033" summary="[ADD] ScreenshotCrudController.php + include in DashboardController">
+      <option name="closed" value="true" />
+      <created>1776613691668</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1776613691668</updated>
+    </task>
+    <task id="LOCAL-00034" summary="[UPDATE] Add __toString method">
+      <option name="closed" value="true" />
+      <created>1776613831945</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1776613831945</updated>
+    </task>
+    <task id="LOCAL-00035" summary="[FIX] ScreenshotProcessor file type">
+      <option name="closed" value="true" />
+      <created>1776613875387</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1776613875387</updated>
+    </task>
+    <task id="LOCAL-00036" summary="[UPDATE] config : add projectDir for ScreenshotCrudController">
+      <option name="closed" value="true" />
+      <created>1776613912880</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1776613912880</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,12 +549,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[CREATE] Tag entity + migration" />
-    <MESSAGE value="[CREATE] Technology &amp; Client entity + migrations" />
-    <MESSAGE value="[CREATE] Screenshot &amp; Project entity + migrations" />
-    <MESSAGE value="[CREATE] ProjectHighlight &amp; ProjectFeature entity + migrations" />
-    <MESSAGE value="[CREATE] Screenshot and Project entity + migrations" />
-    <MESSAGE value="[CREATE] Technology and Client entity + migrations" />
     <MESSAGE value="[CREATE] ProjectHighlight &amp; ProjectFeature entity + migrations" />
     <MESSAGE value="[CREATE] Screenshot &amp; Project entity + migrations" />
     <MESSAGE value="[CREATE] Technology &amp; Client entity + migrations" />
@@ -524,6 +568,12 @@
     <MESSAGE value="[CREATED] ProjectFeature/Hightlight Type" />
     <MESSAGE value="[CREATED] ProjectCrudController  &amp; added to DashboardController" />
     <MESSAGE value="[ADD] french translations" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ADD] french translations" />
+    <MESSAGE value="[ADD] ScreenshotProcessor V1" />
+    <MESSAGE value="[ADD] Webp support" />
+    <MESSAGE value="[ADD] ScreenshotCrudController.php + include in DashboardController" />
+    <MESSAGE value="[UPDATE] Add __toString method" />
+    <MESSAGE value="[FIX] ScreenshotProcessor file type" />
+    <MESSAGE value="[UPDATE] config : add projectDir for ScreenshotCrudController" />
+    <option name="LAST_COMMIT_MESSAGE" value="[UPDATE] config : add projectDir for ScreenshotCrudController" />
   </component>
 </project>
