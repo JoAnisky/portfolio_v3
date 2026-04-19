@@ -35,5 +35,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Référentiels');
         yield MenuItem::linkTo(TagCrudController::class, 'Tags', 'fa fa-tag');
         yield MenuItem::linkTo(TechnologyCrudController::class, 'Technologies', 'fa fa-microchip');
+        yield MenuItem::section('Médias');
+        yield MenuItem::linkTo(ScreenshotCrudController::class, 'Screenshots', 'fa fa-image');
     }
 }
