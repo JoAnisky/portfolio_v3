@@ -7,7 +7,7 @@ use Intervention\Image\Encoders\WebpEncoder;
 use Intervention\Image\Exceptions\InvalidArgumentException;
 use Intervention\Image\ImageManager;
 use Random\RandomException;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 
 class ScreenshotProcessor
 {
@@ -22,7 +22,7 @@ class ScreenshotProcessor
      * @throws RandomException
      * @throws InvalidArgumentException
      */
-    public function process(UploadedFile $file): string
+    public function process(File $file): string
     {
         if (!is_dir($this->uploadDir)) {
             mkdir($this->uploadDir, 0755, true);
