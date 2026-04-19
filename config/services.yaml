@@ -24,3 +24,7 @@ services:
     App\Service\ScreenshotProcessor:
         arguments:
             $projectDir: '%kernel.project_dir%'
+
+    App\Controller\Admin\ScreenshotCrudController:
+        arguments:
+            $projectDir: '%kernel.project_dir%'
