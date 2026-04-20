@@ -218,6 +218,7 @@
       <recent name="\\wsl.localhost\Ubuntu\home\anisky\www\portfolio_jl_v3\back" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="\\wsl.localhost\Ubuntu\home\anisky\www\portfolio_jl_v3\back\templates\admin\fields" />
       <recent name="\\wsl.localhost\Ubuntu\home\anisky\www\portfolio_jl_v3\back\.docker" />
       <recent name="\\wsl.localhost\Ubuntu\home\anisky\www\portfolio_jl_v3\back" />
     </key>
@@ -241,7 +242,9 @@
       <workItem from="1776061630731" duration="4581000" />
       <workItem from="1776071162145" duration="9393000" />
       <workItem from="1776540461419" duration="645000" />
-      <workItem from="1776610880377" duration="3044000" />
+      <workItem from="1776610880377" duration="3608000" />
+      <workItem from="1776676429179" duration="35000" />
+      <workItem from="1776713226465" duration="1289000" />
     </task>
     <task id="LOCAL-00001" summary="[ADD] Base files">
       <option name="closed" value="true" />
@@ -531,7 +534,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776613912880</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="[UPDATE] .gitignore : upload dir">
+      <option name="closed" value="true" />
+      <created>1776613987171</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1776613987171</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -549,7 +560,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[CREATE] ProjectHighlight &amp; ProjectFeature entity + migrations" />
     <MESSAGE value="[CREATE] Screenshot &amp; Project entity + migrations" />
     <MESSAGE value="[CREATE] Technology &amp; Client entity + migrations" />
     <MESSAGE value="[CREATE] ProjectHighlight &amp;nd ProjectFeature entity + migration" />
@@ -574,6 +584,7 @@
     <MESSAGE value="[UPDATE] Add __toString method" />
     <MESSAGE value="[FIX] ScreenshotProcessor file type" />
     <MESSAGE value="[UPDATE] config : add projectDir for ScreenshotCrudController" />
-    <option name="LAST_COMMIT_MESSAGE" value="[UPDATE] config : add projectDir for ScreenshotCrudController" />
+    <MESSAGE value="[UPDATE] .gitignore : upload dir" />
+    <option name="LAST_COMMIT_MESSAGE" value="[UPDATE] .gitignore : upload dir" />
   </component>
 </project>

@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Screenshot;
 use App\Service\ScreenshotProcessor;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -14,15 +15,14 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Intervention\Image\Exceptions\InvalidArgumentException;
 use Random\RandomException;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\RequestStack;
+use EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider;
 
 class ScreenshotCrudController extends AbstractCrudController
 {
     public function __construct(
         private ScreenshotProcessor $screenshotProcessor,
-        private RequestStack $requestStack,
         private string $projectDir,
+        private AdminContextProvider $adminContextProvider,
     ) {}
 
     public static function getEntityFqcn(): string
@@ -34,14 +34,32 @@ class ScreenshotCrudController extends AbstractCrudController
     {
         yield IdField::new('id')->hideOnForm();
         yield AssociationField::new('project', 'Projet');
+
+        // Création uniquement — requis
         yield ImageField::new('path', 'Image')
             ->setUploadDir('public/uploads/screenshots_tmp')
-            ->setBasePath('')
+            ->setBasePath('/')
             ->setRequired(true)
-            ->onlyOnForms();
+            ->onlyWhenCreating();
+        // Vue index/detail uniquement
         yield ImageField::new('path', 'Aperçu')
-            ->setBasePath('')
+            ->setBasePath('/')
             ->hideOnForm();
+        // Édition — avec miniature via setHelp
+        if ($pageName === Crud::PAGE_EDIT) {
+
+            $entity = $this->adminContextProvider->getContext()?->getEntity()->getInstance();
+            $path = $entity instanceof Screenshot ? $entity->getPath() : null;
+            $label = $path
+                ? sprintf('<div><img src="/%s" style="max-width:200px;border-radius:4px;display:block;margin-bottom:8px;" alt="Image actuelle"><span>Remplacer l\'image</span></div>', htmlspecialchars($path))
+                : 'Remplacer l\'image';
+
+            yield ImageField::new('path', $label)
+                ->setUploadDir('public/uploads/screenshots_tmp')
+                ->setBasePath('/')
+                ->setRequired(false);
+        }
+
         yield TextField::new('alt', 'Texte alternatif');
         yield BooleanField::new('isCover', 'Cover');
         yield IntegerField::new('position', 'Position');
@@ -97,26 +115,10 @@ class ScreenshotCrudController extends AbstractCrudController
         unlink($tmpPath);
     }
 
-//    /**
-//     * @throws InvalidArgumentException
-//     * @throws RandomException
-//     */
-//    protected function processUploadedFiles(FormInterface $form): void
+//    #[NoReturn]
+//    public function createEditFormBuilder(\EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto $entityDto, \EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection|\EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore $formFields, \EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore|\EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext $formOptions): \Symfony\Component\Form\FormBuilderInterface
 //    {
-//        dd($form->get('path')->getData());
-//
-//
-//        /** @var UploadedFile|null $file */
-//        $file = $form->get('path')->getData();
-//
-//        if ($file instanceof UploadedFile) {
-//            $path = $this->screenshotProcessor->process($file);
-//            $form->getData()->setPath($path);
-//
-//            // On empêche EasyAdmin de déplacer le fichier lui-même
-//            return;
-//        }
-//
-//        parent::processUploadedFiles($form);
+//        $builder = parent::createEditFormBuilder($entityDto, $formFields, $formOptions);
+//        dd($builder->get('path')->getData());
 //    }
 }
