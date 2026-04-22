@@ -54,14 +54,16 @@ class Screenshot
     {
         if ($this->isCover && $this->project !== null) {
             foreach ($this->project->getScreenshots() as $screenshot) {
-                if ($screenshot !== $this && $screenshot->isCover()) {
+                if ($screenshot !== $this && $screenshot->getIsCover()) {
                     $screenshot->setIsCover(false);
                 }
             }
         }
     }
 
-    public function isCover(): ?bool { return $this->isCover; }
+    public function getIsCover(): ?bool {
+        return $this->isCover;
+    }
 
     public function setIsCover(bool $isCover): static
     {
