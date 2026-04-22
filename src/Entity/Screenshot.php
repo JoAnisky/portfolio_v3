@@ -5,10 +5,13 @@ namespace App\Entity;
 use App\Repository\ScreenshotRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Uid\Uuid;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ScreenshotRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[Vich\Uploadable]
 class Screenshot
 {
     #[ORM\Id]
@@ -17,7 +20,10 @@ class Screenshot
     #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
     private Uuid $id;
 
-    #[ORM\Column(length: 255)]
+    #[Vich\UploadableField(mapping: 'screenshots', fileNameProperty: 'path')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $path = null;
 
     #[ORM\Column(length: 255)]
@@ -29,14 +35,13 @@ class Screenshot
     #[ORM\Column]
     private int $position = 0;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $updatedAt = null;
+
     #[ORM\ManyToOne(inversedBy: 'screenshots')]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private Project $project;
 
-    /**
-     * Ensure only one screenshot is used as cover
-     * @return void
-     */
     #[ORM\PrePersist]
     #[ORM\PreUpdate]
     public function enforceSingleCover(): void
@@ -50,63 +55,43 @@ class Screenshot
         }
     }
 
-    public function getId(): Uuid
-    {
-        return $this->id;
-    }
-
-    public function getPath(): ?string
-    {
-        return $this->path;
-    }
-
-    public function setPath(string $path): static
-    {
-        $this->path = $path;
-
-        return $this;
-    }
-
-    public function getAlt(): ?string
-    {
-        return $this->alt;
-    }
-
-    public function setAlt(string $alt): static
-    {
-        $this->alt = $alt;
-
-        return $this;
-    }
-
-    public function isCover(): ?bool
-    {
-        return $this->isCover;
-    }
+    public function isCover(): ?bool { return $this->isCover; }
 
     public function setIsCover(bool $isCover): static
     {
         $this->isCover = $isCover;
-
         return $this;
     }
 
-    public function getPosition(): ?int
+    public function getId(): Uuid { return $this->id; }
+
+    public function getPath(): ?string { return $this->path; }
+
+    public function setPath(?string $path): static
     {
-        return $this->position;
+        $this->path = $path;
+        return $this;
     }
+
+    public function getAlt(): ?string { return $this->alt; }
+
+    public function setAlt(string $alt): static
+    {
+        $this->alt = $alt;
+        return $this;
+    }
+
+    public function getPosition(): ?int { return $this->position; }
 
     public function setPosition(int $position): static
     {
         $this->position = $position;
-
         return $this;
     }
 
-    public function getProject(): Project
-    {
-        return $this->project;
-    }
+    public function getUpdatedAt(): ?\DateTimeImmutable { return $this->updatedAt; }
+
+    public function getProject(): Project { return $this->project; }
 
     public function setProject(Project $project): static
     {
