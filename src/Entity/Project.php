@@ -9,11 +9,32 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
+#[ApiResource(
+    operations: [
+        new GetCollection(),
+        new Get(),
+    ],
+    normalizationContext: [
+        'groups' => [
+            self::READ_GROUP,
+            self::WRITE_GROUP,
+        ]
+    ],
+    paginationItemsPerPage: 12,
+)]
 class Project
 {
+    const string ALL_GROUP = 'project';
+    const string READ_GROUP = self::ALL_GROUP . ':read';
+    const string WRITE_GROUP = self::ALL_GROUP . ':write';
+
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
@@ -21,21 +42,27 @@ class Project
     private Uuid $id;
 
     #[ORM\Column(length: 255)]
+    #[Groups([Project::READ_GROUP])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
+    #[Groups([Project::READ_GROUP])]
     private ?\DateTimeImmutable $date = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups([Project::READ_GROUP])]
     private ?string $githubUrl = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups([Project::READ_GROUP])]
     private ?string $siteUrl = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups([Project::READ_GROUP])]
     private ?string $description = null;
 
     #[ORM\Column(length: 20, enumType: ProjectContext::class)]
+    #[Groups([Project::READ_GROUP])]
     private ?ProjectContext $context = null;
 
     /**
@@ -43,6 +70,7 @@ class Project
      */
     #[ORM\OneToMany(targetEntity: Screenshot::class, mappedBy: 'project', cascade: ['persist', 'remove'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => 'ASC'])]
+    #[Groups([Project::READ_GROUP])]
     private Collection $screenshots;
 
     /**
@@ -50,6 +78,7 @@ class Project
      */
     #[ORM\OneToMany(targetEntity: ProjectFeature::class, mappedBy: 'project', cascade: ['persist', 'remove'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => 'ASC'])]
+    #[Groups([Project::READ_GROUP])]
     private Collection $features;
 
     /**
@@ -57,6 +86,7 @@ class Project
      */
     #[ORM\OneToMany(targetEntity: ProjectHighlight::class, mappedBy: 'project', cascade: ['persist', 'remove'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => 'ASC'])]
+    #[Groups([Project::READ_GROUP])]
     private Collection $highlights;
 
     /**
@@ -64,6 +94,7 @@ class Project
      */
     #[ORM\ManyToMany(targetEntity: Client::class, inversedBy: 'projects')]
     #[ORM\JoinTable(name: 'project_client')]
+    #[Groups([Project::READ_GROUP])]
     private Collection $clients;
 
     /**
@@ -71,6 +102,7 @@ class Project
      */
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'projects')]
     #[ORM\JoinTable(name: 'project_tag')]
+    #[Groups([Project::READ_GROUP])]
     private Collection $tags;
 
     /**
@@ -78,6 +110,7 @@ class Project
      */
     #[ORM\ManyToMany(targetEntity: Technology::class, inversedBy: 'projects')]
     #[ORM\JoinTable(name: 'project_technology')]
+    #[Groups([Project::READ_GROUP])]
     private Collection $technologies;
 
     public function __construct()
