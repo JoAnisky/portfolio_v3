@@ -28,3 +28,7 @@ services:
     App\EventListener\ScreenshotUploadListener:
         arguments:
             $uploadDir: '%kernel.project_dir%/public/uploads/screenshots'
+
+    App\State\ContactProcessor:
+        arguments:
+            $contactRecipient: '%env(CONTACT_EMAIL)%'
