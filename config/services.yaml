@@ -25,6 +25,6 @@ services:
         arguments:
             $projectDir: '%kernel.project_dir%'
 
-    App\Controller\Admin\ScreenshotCrudController:
+    App\EventListener\ScreenshotUploadListener:
         arguments:
-            $projectDir: '%kernel.project_dir%'
+            $uploadDir: '%kernel.project_dir%/public/uploads/screenshots'

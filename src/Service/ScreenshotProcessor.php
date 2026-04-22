@@ -29,7 +29,6 @@ class ScreenshotProcessor
         }
 
         $manager = ImageManager::usingDriver(Driver::class);
-
         $image = $manager->decodeSplFileInfo($file);
         $image->scaleDown(width: 1400);
 
@@ -38,6 +37,7 @@ class ScreenshotProcessor
 
         $image->encode(new WebpEncoder(quality: 82))->save($fullPath);
 
-        return 'uploads/screenshots/' . $filename;
+        // Retourne uniquement le nom du fichier
+        return $filename;
     }
 }
