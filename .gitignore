@@ -24,7 +24,7 @@
 /.docker/.env.docker.prod
 
 # IDE / OS
-.idea
+.idea/
 .vscode
 .DS_Store
 
