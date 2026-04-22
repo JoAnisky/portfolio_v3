@@ -176,6 +176,8 @@
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
       <path value="$PROJECT_DIR$/vendor/intervention/gif" />
       <path value="$PROJECT_DIR$/vendor/nelmio/cors-bundle" />
+      <path value="$PROJECT_DIR$/vendor/jms/metadata" />
+      <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -244,7 +246,8 @@
       <workItem from="1776540461419" duration="645000" />
       <workItem from="1776610880377" duration="3608000" />
       <workItem from="1776676429179" duration="35000" />
-      <workItem from="1776713226465" duration="1289000" />
+      <workItem from="1776713226465" duration="1992000" />
+      <workItem from="1776846460952" duration="1968000" />
     </task>
     <task id="LOCAL-00001" summary="[ADD] Base files">
       <option name="closed" value="true" />
@@ -542,7 +545,31 @@
       <option name="project" value="LOCAL" />
       <updated>1776613987171</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="[ADD] Screenshot preview on edit form">
+      <option name="closed" value="true" />
+      <created>1776714686196</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1776714686196</updated>
+    </task>
+    <task id="LOCAL-00039" summary="[UPDATE] ProjectFeature : add __toString method">
+      <option name="closed" value="true" />
+      <created>1776847240537</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1776847240537</updated>
+    </task>
+    <task id="LOCAL-00040" summary="[UPDATE] ProjectFeature/Highlight : add __toString method">
+      <option name="closed" value="true" />
+      <created>1776847371309</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1776847371309</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -560,9 +587,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[CREATE] Screenshot &amp; Project entity + migrations" />
-    <MESSAGE value="[CREATE] Technology &amp; Client entity + migrations" />
-    <MESSAGE value="[CREATE] ProjectHighlight &amp;nd ProjectFeature entity + migration" />
     <MESSAGE value="[ADD] Tag : uuid + migration" />
     <MESSAGE value="[ADD] Entities : uuid + migration" />
     <MESSAGE value="[UPDATE] Project : relation + CREATED ProjectContext enum" />
@@ -585,6 +609,9 @@
     <MESSAGE value="[FIX] ScreenshotProcessor file type" />
     <MESSAGE value="[UPDATE] config : add projectDir for ScreenshotCrudController" />
     <MESSAGE value="[UPDATE] .gitignore : upload dir" />
-    <option name="LAST_COMMIT_MESSAGE" value="[UPDATE] .gitignore : upload dir" />
+    <MESSAGE value="[ADD] Screenshot preview on edit form" />
+    <MESSAGE value="[UPDATE] ProjectFeature : add __toString method" />
+    <MESSAGE value="[UPDATE] ProjectFeature/Highlight : add __toString method" />
+    <option name="LAST_COMMIT_MESSAGE" value="[UPDATE] ProjectFeature/Highlight : add __toString method" />
   </component>
 </project>
