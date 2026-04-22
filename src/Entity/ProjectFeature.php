@@ -2,14 +2,35 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\ProjectFeatureRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: ProjectFeatureRepository::class)]
+#[ApiResource(
+    operations: [
+        new GetCollection(),
+        new Get(),
+    ],
+    normalizationContext: [
+        'groups' => [
+            self::READ_GROUP,
+            self::WRITE_GROUP,
+        ]
+    ],
+    paginationItemsPerPage: 12,
+)]
 class ProjectFeature
 {
+    const string ALL_GROUP = 'feature';
+    const string READ_GROUP = self::ALL_GROUP . ':read';
+    const string WRITE_GROUP = self::ALL_GROUP . ':write';
+
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
@@ -17,9 +38,11 @@ class ProjectFeature
     private Uuid $id;
 
     #[ORM\Column(length: 255)]
+    #[Groups([Project::READ_GROUP, ProjectFeature::READ_GROUP])]
     private ?string $label = null;
 
     #[ORM\Column]
+    #[Groups([Project::READ_GROUP, ProjectFeature::READ_GROUP])]
     private int $position = 0;
 
     #[ORM\ManyToOne(inversedBy: 'features')]
