@@ -26,6 +26,11 @@ class ProjectFeature
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private Project $project;
 
+    public function __toString(): string
+    {
+        return $this->label ?? '';
+    }
+
     public function getId(): Uuid
     {
         return $this->id;
