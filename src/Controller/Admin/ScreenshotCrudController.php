@@ -12,14 +12,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ScreenshotCrudController extends AbstractCrudController
 {
-    public function __construct(
-        private AdminContextProvider $adminContextProvider,
-    ) {}
 
     public static function getEntityFqcn(): string
     {
