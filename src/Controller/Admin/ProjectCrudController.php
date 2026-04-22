@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 
@@ -41,7 +42,7 @@ class ProjectCrudController extends AbstractCrudController
                 'Personnel' => ProjectContext::PERSONAL,
                 'Professionnel' => ProjectContext::PROFESSIONAL,
             ]);
-        yield TextareaField::new('description', 'Description')
+        yield TextEditorField::new('description', 'Description')
             ->hideOnIndex();
         yield UrlField::new('githubUrl', 'GitHub')->setRequired(false)->hideOnIndex();
         yield UrlField::new('siteUrl', 'Site')->setRequired(false)->hideOnIndex();
