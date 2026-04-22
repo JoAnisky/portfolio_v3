@@ -2,9 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
 use App\Repository\ScreenshotRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
@@ -16,24 +13,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ORM\Entity(repositoryClass: ScreenshotRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[Vich\Uploadable]
-#[ApiResource(
-    operations: [
-        new GetCollection(),
-        new Get(),
-    ],
-    normalizationContext: [
-        'groups' => [
-            self::READ_GROUP,
-            self::WRITE_GROUP,
-        ]
-    ],
-    paginationItemsPerPage: 12,
-)]
 class Screenshot
 {
-    const string ALL_GROUP = 'screenshot';
-    const string READ_GROUP = self::ALL_GROUP . ':read';
-    const string WRITE_GROUP = self::ALL_GROUP . ':write';
 
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME, unique: true)]

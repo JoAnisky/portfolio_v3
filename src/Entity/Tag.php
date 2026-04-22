@@ -9,29 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Get;
 
 #[ORM\Entity(repositoryClass: TagRepository::class)]
-#[ApiResource(
-    operations: [
-        new GetCollection(),
-        new Get(),
-    ],
-    normalizationContext: [
-        'groups' => [
-            self::READ_GROUP,
-            self::WRITE_GROUP,
-        ]
-    ],
-    paginationItemsPerPage: 12,
-)]
 class Tag
 {
-    const string ALL_GROUP = 'tag';
-    const string READ_GROUP = self::ALL_GROUP . ':read';
-    const string WRITE_GROUP = self::ALL_GROUP . ':write';
 
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME, unique: true)]
@@ -40,7 +21,7 @@ class Tag
     private Uuid $id;
 
     #[ORM\Column(length: 255)]
-    #[Groups([Project::READ_GROUP, Tag::READ_GROUP])]
+    #[Groups([Project::READ_GROUP])]
     private ?string $name = null;
 
     /**
