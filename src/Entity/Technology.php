@@ -7,11 +7,32 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
 
 #[ORM\Entity(repositoryClass: TechnologyRepository::class)]
+#[ApiResource(
+    operations: [
+        new GetCollection(),
+        new Get(),
+    ],
+    normalizationContext: [
+        'groups' => [
+            self::READ_GROUP,
+            self::WRITE_GROUP,
+        ]
+    ],
+    paginationItemsPerPage: 12,
+)]
 class Technology
 {
+    const string ALL_GROUP = 'technology';
+    const string READ_GROUP = self::ALL_GROUP . ':read';
+    const string WRITE_GROUP = self::ALL_GROUP . ':write';
+
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
@@ -19,12 +40,15 @@ class Technology
     private Uuid $id;
 
     #[ORM\Column(length: 255)]
+    #[Groups([Project::READ_GROUP, Technology::READ_GROUP])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups([Project::READ_GROUP, Technology::READ_GROUP])]
     private ?string $icon = null;
 
     #[ORM\Column(length: 7, nullable: true)]
+    #[Groups([Project::READ_GROUP, Technology::READ_GROUP])]
     private ?string $color = null;
 
     #[ORM\Column(length: 50)]
