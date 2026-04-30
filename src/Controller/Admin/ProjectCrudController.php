@@ -41,7 +41,7 @@ class ProjectCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield IdField::new('id')->hideOnForm();
+        yield IdField::new('id')->hideOnForm()->hideOnIndex();
         yield TextField::new('name', 'Nom');
 
         // Ajoute un lien "Gérer les screenshots" : Ouvre une nouvelle page des screenshots liés au projet

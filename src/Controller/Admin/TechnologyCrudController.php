@@ -27,7 +27,7 @@ class TechnologyCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield IdField::new('id')->hideOnForm();
+        yield IdField::new('id')->hideOnForm()->hideOnIndex();
         yield TextField::new('name', 'Nom');
         yield TextField::new('icon', 'Icon filename')->setHelp('Ex : VueJS, Symfony, Kubernetes, Docker...');
         yield ColorField::new('color', 'Couleur')->setRequired(false);

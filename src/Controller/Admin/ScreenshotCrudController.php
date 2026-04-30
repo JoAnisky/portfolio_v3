@@ -24,7 +24,7 @@ class ScreenshotCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield IdField::new('id')->hideOnForm();
+        yield IdField::new('id')->hideOnForm()->hideOnIndex();
         yield AssociationField::new('project', 'Projet');
 
         // Vue index/detail
