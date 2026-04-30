@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Technology;
+use App\Enum\TechnologyCategory;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
@@ -30,12 +31,12 @@ class TechnologyCrudController extends AbstractCrudController
         yield TextField::new('name', 'Nom');
         yield TextField::new('icon', 'Slug Simple Icons')->setHelp('Ex : VueJS, Symfony, Kubernetes, Docker...');
         yield ColorField::new('color', 'Couleur')->setRequired(false);
-        yield ChoiceField::new('category', 'Catégorie')->setChoices([
-            'Frontend'  => 'frontend',
-            'Backend'   => 'backend',
-            'DevOps'    => 'devops',
-            'Base de données' => 'database',
-            'Autre'     => 'other',
-        ]);
+        yield ChoiceField::new('category')
+            ->setChoices([
+                'Languages' => TechnologyCategory::Languages,
+                'Frameworks / Librairies, CMS' => TechnologyCategory::Frameworks,
+                'DevOps' => TechnologyCategory::DevOps,
+                'Outils et logiciels' => TechnologyCategory::Tools,
+            ]);
     }
 }

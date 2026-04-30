@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\TechnologyCategory;
 use App\Repository\TechnologyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -32,8 +33,9 @@ class Technology
     #[Groups([Project::READ_GROUP])]
     private ?string $color = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $category = null;
+    #[ORM\Column(type: 'string', enumType: TechnologyCategory::class)]
+    #[Groups([Project::READ_GROUP])]
+    private TechnologyCategory $category;
 
     /**
      * @var Collection<int, Project>
@@ -87,12 +89,12 @@ class Technology
         return $this;
     }
 
-    public function getCategory(): ?string
+    public function getCategory(): TechnologyCategory
     {
         return $this->category;
     }
 
-    public function setCategory(string $category): static
+    public function setCategory(TechnologyCategory $category): static
     {
         $this->category = $category;
 
