@@ -30,6 +30,14 @@ class Tag
     #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'tags')]
     private Collection $projects;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups([Project::READ_GROUP])]
+    private ?string $icon = null;
+
+    #[ORM\Column(length: 7, nullable: true)]
+    #[Groups([Project::READ_GROUP])]
+    private ?string $color = null;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
@@ -82,5 +90,29 @@ class Tag
     public function __toString(): string
     {
         return $this->name ?? '';
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?string $icon): static
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): static
+    {
+        $this->color = $color;
+
+        return $this;
     }
 }
