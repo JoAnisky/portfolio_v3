@@ -29,8 +29,7 @@ class TechnologyCrudController extends AbstractCrudController
     {
         yield IdField::new('id')->hideOnForm()->hideOnIndex();
         yield TextField::new('name', 'Nom');
-        yield TextField::new('icon', 'Icon filename')->setHelp('Ex : VueJS, Symfony, Kubernetes, Docker...');
-        yield ColorField::new('color', 'Couleur')->setRequired(false);
+        yield TextField::new('icon', 'Icon filename')->setHelp('Ex : vuejs, symfony, kubernetes, docker...');
         yield ChoiceField::new('category')
             ->setChoices([
                 'Languages' => TechnologyCategory::Languages,

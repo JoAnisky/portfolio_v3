@@ -29,10 +29,6 @@ class Technology
     #[Groups([Project::READ_GROUP])]
     private ?string $icon = null;
 
-    #[ORM\Column(length: 7, nullable: true)]
-    #[Groups([Project::READ_GROUP])]
-    private ?string $color = null;
-
     #[ORM\Column(type: 'string', enumType: TechnologyCategory::class)]
     #[Groups([Project::READ_GROUP])]
     private TechnologyCategory $category;
@@ -73,18 +69,6 @@ class Technology
     public function setIcon(string $icon): static
     {
         $this->icon = $icon;
-
-        return $this;
-    }
-
-    public function getColor(): ?string
-    {
-        return $this->color;
-    }
-
-    public function setColor(?string $color): static
-    {
-        $this->color = $color;
 
         return $this;
     }
