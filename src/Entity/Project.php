@@ -39,6 +39,7 @@ class Project
     #[ORM\Column(type: UuidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
+    #[Groups([Project::READ_GROUP])]
     private Uuid $id;
 
     #[ORM\Column(length: 255)]
