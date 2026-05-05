@@ -27,8 +27,14 @@ class ContactProcessor implements ProcessorInterface
                 ->from('noreply@jonathanlore.fr')
                 ->replyTo($data->email)
                 ->to($this->contactRecipient)
-                ->subject("Contact portfolio — {$data->name}")
-                ->text("De : {$data->name} <{$data->email}>\n\n{$data->message}");
+                ->subject("Contact portfolio - {$data->name}")
+                ->text(<<<TEXT
+                        De : {$data->name} <{$data->email}>
+
+                        Sujet : {$data->subject}
+
+                        {$data->message}
+                        TEXT);
 
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
