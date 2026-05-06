@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Project;
 use App\Enum\ProjectContext;
+use App\Enum\ProjectType;
 use App\Form\ProjectFeatureType;
 use App\Form\ProjectHighlightType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -74,11 +75,18 @@ class ProjectCrudController extends AbstractCrudController
                 'Personnel' => ProjectContext::PERSONAL,
                 'Professionnel' => ProjectContext::PROFESSIONAL,
             ]);
+        yield ChoiceField::new('type', 'Type')
+            ->setChoices([
+                'Site web'              => ProjectType::Website,
+                'Application web'      => ProjectType::WebApp,
+                'E-commerce'           => ProjectType::Ecommerce,
+                'API / Backend'        => ProjectType::Api,
+                'DevOps / Infrastructure' => ProjectType::DevOps,
+            ]);
         yield TextEditorField::new('description', 'Description')
             ->hideOnIndex();
         yield UrlField::new('githubUrl', 'GitHub')->setRequired(false)->hideOnIndex();
         yield UrlField::new('siteUrl', 'Site')->setRequired(false)->hideOnIndex();
-
         yield AssociationField::new('clients', 'Clients')->setRequired(false);
         yield AssociationField::new('tags', 'Tags')->setRequired(false);
         yield AssociationField::new('technologies', 'Technologies')->setRequired(false);

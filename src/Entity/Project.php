@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Enum\ProjectContext;
+use App\Enum\ProjectType;
 use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -113,6 +114,10 @@ class Project
     #[ORM\JoinTable(name: 'project_technology')]
     #[Groups([Project::READ_GROUP])]
     private Collection $technologies;
+
+    #[ORM\Column(type: 'string', enumType: ProjectType::class)]
+    #[Groups([Project::READ_GROUP])]
+    private ProjectType $type;
 
     public function __construct()
     {
@@ -365,6 +370,17 @@ class Project
     {
         $this->technologies->removeElement($technology);
 
+        return $this;
+    }
+
+    public function getType(): ProjectType
+    {
+        return $this->type;
+    }
+
+    public function setType(ProjectType $type): static
+    {
+        $this->type = $type;
         return $this;
     }
 }
