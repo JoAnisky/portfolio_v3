@@ -10,14 +10,12 @@ enum ProjectType: string
     case Api = 'API / Backend';
     case DevOps = 'DevOps / Infrastructure';
 
-    public function icon(): string
+    public function toArray(): array
     {
-        return match($this) {
-            self::Website  => 'globe.svg',
-            self::WebApp   => 'app.svg',
-            self::Ecommerce => 'cart.svg',
-            self::Api      => 'server.svg',
-            self::DevOps   => 'infrastructure.svg',
-        };
+        return [
+            'key'   => $this->name,  // 'Website'
+            'label' => $this->value, // 'Site web'
+        ];
     }
+
 }

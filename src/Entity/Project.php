@@ -116,7 +116,6 @@ class Project
     private Collection $technologies;
 
     #[ORM\Column(type: 'string', enumType: ProjectType::class)]
-    #[Groups([Project::READ_GROUP])]
     private ProjectType $type;
 
     public function __construct()
@@ -373,9 +372,10 @@ class Project
         return $this;
     }
 
-    public function getType(): ProjectType
+    #[Groups([Project::READ_GROUP])]
+    public function getType(): array
     {
-        return $this->type;
+        return $this->type->toArray();
     }
 
     public function setType(ProjectType $type): static
