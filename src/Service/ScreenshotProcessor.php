@@ -22,10 +22,12 @@ class ScreenshotProcessor
      * @throws RandomException
      * @throws InvalidArgumentException
      */
-    public function process(File $file): string
+    public function process(File $file, string $projectGuid): string
     {
-        if (!is_dir($this->uploadDir)) {
-            mkdir($this->uploadDir, 0755, true);
+        $subDir = $this->uploadDir . '/' . $projectGuid;
+
+        if (!is_dir($subDir)) {
+            mkdir($subDir, 0755, true);
         }
 
         $manager = ImageManager::usingDriver(Driver::class);
@@ -33,11 +35,10 @@ class ScreenshotProcessor
         $image->scaleDown(width: 1400);
 
         $filename = bin2hex(random_bytes(8)) . '.webp';
-        $fullPath = $this->uploadDir . '/' . $filename;
+        $fullPath = $subDir . '/' . $filename;
 
         $image->encode(new WebpEncoder(quality: 82))->save($fullPath);
 
-        // Retourne uniquement le nom du fichier
-        return $filename;
+        return $projectGuid . '/' . $filename;
     }
 }

@@ -44,10 +44,10 @@ class ScreenshotUploadListener
         }
 
         $file = new File($fullPath);
-        $filename = $this->screenshotProcessor->process($file);
+        $relativePath = $this->screenshotProcessor->process($file, (string) $object->getProject()->getId());
 
         unlink($fullPath);
 
-        $object->setPath($filename);
+        $object->setPath($relativePath);
     }
 }
