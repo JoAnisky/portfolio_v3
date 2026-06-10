@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: phpmyadmin
+    namespace: portfoliov3-api
+spec:
+    selector:
+        matchLabels:
+            app: phpmyadmin
+    template:
+        metadata:
+            labels:
+                app: phpmyadmin
+        spec:
+            containers:
+                - name: phpmyadmin
+                  image: phpmyadmin:5
+                  env:
+                      - name: PMA_HOST
+                        value: mariadb
+                      - name: PMA_ABSOLUTE_URI
+                        value: "https://pma.portfoliov3.jonathanlore.fr/"
+#                      - name: PMA_USER
+#                        value: root
+#                      - name: PMA_PASSWORD
+#                        valueFrom:
+#                            secretKeyRef:
+#                                name: mariadb-secret
+#                                key: root-password
+                  ports:
+                      - containerPort: 80
+                  volumeMounts:
+                      - name: pma-config
+                        mountPath: /etc/phpmyadmin/config.user.inc.php
+                        subPath: config.user.inc.php
+            volumes:
+                - name: pma-config
+                  configMap:
+                      name: phpmyadmin-config

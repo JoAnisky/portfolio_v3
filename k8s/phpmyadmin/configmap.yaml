@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: phpmyadmin-config
+    namespace: portfoliov3-api
+data:
+    config.user.inc.php: |
+        <?php
+        // Force phpMyAdmin à fonctionner en HTTPS derrière un reverse proxy
+        $cfg['ForceSSL'] = true;
+        $cfg['PmaAbsoluteUri'] = 'https://pma.portfoliov3.jonathanlore.fr/';
+
+        // phpMyAdmin doit faire confiance au reverse proxy
+        $cfg['ReverseProxy'] = true;
+
+        // Correctifs cookies Chrome
+        $cfg['CookieSameSite'] = 'None';
+        $cfg['CookieSecure'] = true;
+        $cfg['CookieHttpOnly'] = true;

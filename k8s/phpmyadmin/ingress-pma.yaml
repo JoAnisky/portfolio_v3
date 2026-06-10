@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: phpmyadmin-ingress
+    namespace: portfoliov3-api
+    annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+#        traefik.ingress.kubernetes.io/router.middlewares: portfoliov3-api-pma-redirect-https@kubernetescrd,portfoliov3-api-pma-headers@kubernetescrd
+
+spec:
+    tls:
+        - hosts:
+              - pma.portfoliov3.jonathanlore.fr
+          secretName: pma-portfoliov3-tls
+    rules:
+        - host: pma.portfoliov3.jonathanlore.fr
+          http:
+              paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: phpmyadmin
+                            port:
+                                number: 80
