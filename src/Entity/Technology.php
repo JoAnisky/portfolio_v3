@@ -30,7 +30,6 @@ class Technology
     private ?string $icon = null;
 
     #[ORM\Column(type: 'string', enumType: TechnologyCategory::class)]
-    #[Groups([Project::READ_GROUP])]
     private TechnologyCategory $category;
 
     /**
@@ -73,9 +72,11 @@ class Technology
         return $this;
     }
 
-    public function getCategory(): TechnologyCategory
+    // getter 'virtuel' du enum TechnologyCategory qui est sérialisé
+    #[Groups([Project::READ_GROUP])]
+    public function getCategory(): array
     {
-        return $this->category;
+        return $this->category->toArray();
     }
 
     public function setCategory(TechnologyCategory $category): static
