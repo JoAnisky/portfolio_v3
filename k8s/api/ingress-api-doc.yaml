@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: api-doc-ingress
+    namespace: portfoliov3-api
+    annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+        traefik.ingress.kubernetes.io/router.middlewares: portfoliov3-api-api-doc-auth@kubernetescrd
+spec:
+    tls:
+        - hosts:
+              - api.portfoliov3.jonathanlore.fr
+          secretName: api-portfoliov3-tls
+    rules:
+        - host: api.portfoliov3.jonathanlore.fr
+          http:
+              paths:
+                  - path: /api/docs
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: symfony-api
+                            port:
+                                number: 80

@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: symfony-api
+    namespace: portfoliov3-api
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: symfony-api
+    template:
+        metadata:
+            labels:
+                app: symfony-api
+        spec:
+            securityContext:
+                fsGroup: 33  # www-data GID — accès en écriture au PVC uploads
+            containers:
+                - name: app
+                  image: joanisky/portfoliov3-api:latest
+                  imagePullPolicy: Always
+                  ports:
+                      - containerPort: 80
+                        name: http
+                  envFrom:
+                      - configMapRef:
+                            name: symfony-api-config
+                      - secretRef:
+                            name: symfony-env
+                  volumeMounts:
+                      - name: uploads-storage
+                        mountPath: /var/www/html/public/uploads
+                  resources:
+                      requests:
+                          memory: "128Mi"
+                          cpu: "100m"
+                      limits:
+                          memory: "256Mi"
+                          cpu: "200m"
+                  livenessProbe:
+                      httpGet:
+                          path: /api
+                          port: 80
+                      initialDelaySeconds: 30
+                      periodSeconds: 20
+                      timeoutSeconds: 5
+                      failureThreshold: 3
+                  readinessProbe:
+                      httpGet:
+                          path: /api
+                          port: 80
+                      initialDelaySeconds: 10
+                      periodSeconds: 10
+                      timeoutSeconds: 3
+                      failureThreshold: 3
+            volumes:
+                - name: uploads-storage
+                  persistentVolumeClaim:
+                      claimName: uploads-pvc
