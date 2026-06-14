@@ -24,7 +24,7 @@ spec:
               - name: APP_DEBUG
                 value: "false"
               - name: DATABASE_URL
-                value: "mysql://test:test@127.0.0.1:3306/portfoliov3_api_db_test?serverVersion=10.11.14-MariaDB&charset=utf8mb4"
+                value: "mysql://root:root@127.0.0.1:3306/portfoliov3_api_db?serverVersion=10.11.14-MariaDB&charset=utf8mb4"
 
         - name: mariadb
           image: mariadb:10.11

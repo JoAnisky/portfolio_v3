@@ -50,6 +50,7 @@ pipeline {
                         echo "APP_ENV=test" > .env.test.local
                         echo "DATABASE_URL=${DATABASE_URL}" >> .env.test.local
 
+                        php bin/console doctrine:database:create --env=test --if-not-exists --no-interaction
                         php bin/console doctrine:schema:create --env=test --no-interaction
 
                         mkdir -p test-results/phpunit
