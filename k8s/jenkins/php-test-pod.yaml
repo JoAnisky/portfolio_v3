@@ -6,7 +6,7 @@ spec:
     containers:
 
         - name: php
-          image: joanisky/portfoliov3-api:latest
+          image: joanisky/portfoliov3-api:ci
           command: ["sleep", "infinity"]
           workingDir: /var/www/html
           securityContext:
