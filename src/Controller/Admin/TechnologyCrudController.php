@@ -22,7 +22,8 @@ class TechnologyCrudController extends AbstractCrudController
     {
         return parent::configureCrud($crud)
             ->setEntityLabelInSingular('Technologie')
-            ->setEntityLabelInPlural('Technologies');
+            ->setEntityLabelInPlural('Technologies')
+            ->setDefaultSort(['name' => 'ASC']);
     }
 
     public function configureFields(string $pageName): iterable
