@@ -11,6 +11,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 use Symfony\Component\Uid\Uuid;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
@@ -372,8 +373,14 @@ class Project
         return $this;
     }
 
+    public function getType(): ProjectType
+    {
+        return $this->type;
+    }
+
     #[Groups([Project::READ_GROUP])]
-    public function getType(): array
+    #[SerializedName('type')]
+    public function getTypeForApi(): array
     {
         return $this->type->toArray();
     }
