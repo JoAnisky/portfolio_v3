@@ -24,7 +24,7 @@ class ContactProcessor implements ProcessorInterface
         /** @var ContactInput $data */
         try {
             $email = (new Email())
-                ->from('noreply@jonathanlore.fr')
+                ->from('contact@jonathanlore.fr')
                 ->replyTo($data->email)
                 ->to($this->contactRecipient)
                 ->subject("Contact portfolio - {$data->name}")
