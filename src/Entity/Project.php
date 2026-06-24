@@ -16,11 +16,16 @@ use Symfony\Component\Uid\Uuid;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Metadata\ApiFilter;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
+#[ApiFilter(OrderFilter::class, properties: ['date' => 'DESC'])]
 #[ApiResource(
     operations: [
-        new GetCollection(),
+        new GetCollection(
+            order: ['date' => 'DESC'],
+        ),
         new Get(),
     ],
     normalizationContext: [
