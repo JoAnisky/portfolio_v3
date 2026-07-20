@@ -73,6 +73,7 @@ RUN mkdir -p var/cache var/log public/uploads/screenshots \
 RUN composer install --no-dev --optimize-autoloader --no-progress \
     && php bin/console cache:clear --env=${APP_ENV} --no-warmup || true \
     && php bin/console importmap:install \
+    && php bin/console asset-map:compile --env=${APP_ENV} \
     && php bin/console assets:install public --env=${APP_ENV} --no-interaction \
     && php bin/console cache:warmup --env=${APP_ENV} || true
 
