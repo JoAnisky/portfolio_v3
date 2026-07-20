@@ -236,12 +236,7 @@ class Project
 
     public function removeScreenshot(Screenshot $screenshot): static
     {
-        if ($this->screenshots->removeElement($screenshot)) {
-            // set the owning side to null (unless already changed)
-            if ($screenshot->getProject() === $this) {
-                $screenshot->setProject(null);
-            }
-        }
+        $this->screenshots->removeElement($screenshot);
 
         return $this;
     }
@@ -266,12 +261,7 @@ class Project
 
     public function removeFeature(ProjectFeature $feature): static
     {
-        if ($this->features->removeElement($feature)) {
-            // set the owning side to null (unless already changed)
-            if ($feature->getProject() === $this) {
-                $feature->setProject(null);
-            }
-        }
+        $this->features->removeElement($feature);
 
         return $this;
     }
@@ -296,12 +286,7 @@ class Project
 
     public function removeHighlight(ProjectHighlight $highlight): static
     {
-        if ($this->highlights->removeElement($highlight)) {
-            // set the owning side to null (unless already changed)
-            if ($highlight->getProject() === $this) {
-                $highlight->setProject(null);
-            }
-        }
+        $this->highlights->removeElement($highlight);
 
         return $this;
     }
