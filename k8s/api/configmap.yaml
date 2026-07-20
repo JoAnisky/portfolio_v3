@@ -7,6 +7,10 @@ data:
     APP_ENV: "prod"
     APP_DEBUG: "0"
 
+    # Trust the in-cluster proxy (Traefik) so Symfony reads X-Forwarded-Proto
+    # and generates https:// URLs instead of http://
+    TRUSTED_PROXIES: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+
     SESSION_COOKIE_DOMAIN: ".jonathanlore.fr"
     SESSION_COOKIE_SECURE: "true"
     SESSION_COOKIE_SAMESITE: "lax"
