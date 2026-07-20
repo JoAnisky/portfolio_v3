@@ -7,6 +7,7 @@ use App\Entity\Project;
 use App\Entity\Tag;
 use App\Entity\Technology;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -24,6 +25,12 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('Portfolio JL v3');
+    }
+
+    public function configureAssets(): Assets
+    {
+        // Charge notre entrypoint AssetMapper dédié à l'admin (Stimulus + nos contrôleurs, ex: drag & drop)
+        return Assets::new()->addAssetMapperEntry('admin');
     }
 
     public function configureMenuItems(): iterable

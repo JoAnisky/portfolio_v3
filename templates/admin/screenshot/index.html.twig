@@ -1,0 +1,13 @@
+{% extends '@EasyAdmin/crud/index.html.twig' %}
+
+{% block main %}
+    <div data-controller="sortable-screenshots"
+         data-sortable-screenshots-url-value="{{ path('admin_screenshot_reorder') }}"
+         data-sortable-screenshots-token-value="{{ csrf_token('screenshot_reorder') }}">
+        {{ parent() }}
+    </div>
+{% endblock %}
+
+{% block entity_row_attributes %}
+    data-project-id="{{ entity.instance.project.id }}"
+{% endblock %}

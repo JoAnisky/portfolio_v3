@@ -1,0 +1,33 @@
+{# Overrides only the collection_row block from @EasyAdmin/crud/form_theme.html.twig to attach
+   a Stimulus controller on the field's row wrapper. This wrapper is the only element that is
+   never destroyed/replaced by EasyAdmin's own add/remove-item JS (unlike the inner accordion
+   markup, which gets fully rebuilt when going from an empty collection to a first item), so it's
+   the one stable place to hook drag & drop reordering for non-array CollectionField entries
+   (Features, Highlights). #}
+{% block collection_row %}
+    {% if prototype is defined and not prototype.rendered %}
+        {% set row_attr = row_attr|merge({'data-prototype': form_row(prototype)}) %}
+    {% endif %}
+
+    {% set maxKey = 0 %}
+    {% for key in form.children|keys %}
+        {% if key matches '/^\\d+$/' %}
+            {% set intKey = key|number_format(0, '', '', '') %}
+            {% if intKey > maxKey %}
+                {% set maxKey = intKey %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% set row_attr = row_attr|merge({
+        'data-ea-collection-field': 'true',
+        'data-entry-is-complex': form.vars.ea_vars.field and form.vars.ea_vars.field.customOptions.get('entryIsComplex') ? 'true' : 'false',
+        'data-allow-add': allow_add ? 'true' : 'false',
+        'data-allow-delete': allow_delete ? 'true' : 'false',
+        'data-num-items': form.children is empty ? 0 : maxKey + 1,
+        'data-form-type-name-placeholder': prototype is defined ? prototype.vars.name : '',
+        'data-controller': 'sortable-collection',
+    }) %}
+
+    {{ block('form_row') }}
+{% endblock collection_row %}

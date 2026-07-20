@@ -37,7 +37,8 @@ class ProjectCrudController extends AbstractCrudController
     {
         return parent::configureCrud($crud)
             ->setEntityLabelInSingular('Projet')
-            ->setEntityLabelInPlural('Projets');
+            ->setEntityLabelInPlural('Projets')
+            ->addFormTheme('admin/form/sortable_collection_theme.html.twig');
     }
 
     public function configureFields(string $pageName): iterable
