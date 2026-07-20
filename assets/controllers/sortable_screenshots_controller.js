@@ -20,6 +20,8 @@ export default class extends Controller {
         this.sortable = Sortable.create(tbody, {
             handle: '.sortable-handle',
             animation: 150,
+            // native HTML5 drag can be swallowed by EasyAdmin's own row click-to-edit handler
+            forceFallback: true,
             onEnd: () => this.persist(),
         });
     }

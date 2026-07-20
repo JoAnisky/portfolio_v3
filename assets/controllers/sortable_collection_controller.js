@@ -9,7 +9,6 @@ export default class extends Controller {
     }
 
     disconnect() {
-        this.sortable?.destroy();
         this.observer?.disconnect();
     }
 
@@ -23,18 +22,34 @@ export default class extends Controller {
             }
         });
 
-        if (items.length === 0) {
+        // Sortable itself moves items around (live, during a drag) which re-triggers this
+        // MutationObserver callback. Never destroy/recreate an existing instance in response
+        // to that, or an in-progress drag gets corrupted (item snaps back on drop). Only
+        // initialize once per container element (identified via a marker attribute); a brand
+        // new container (e.g. the empty-collection placeholder being replaced by the first
+        // real item) simply won't have that marker yet.
+        if (items.length === 0 || Sortable.active) {
             return;
         }
 
-        const container = items[0].parentElement;
-        if (container !== this.sortableContainer) {
-            this.sortable?.destroy();
-            this.sortableContainer = container;
-            this.sortable = Sortable.create(container, {
-                handle: '.accordion-button',
-                animation: 150,
-            });
+        // Actual rendered nesting: .accordion > .form-widget-compound > [collection container,
+        // one div holding the empty-state badge OR the real entries] > .field-collection-item
+        // (xN, siblings) > .accordion-item. Sortable must bind to that innermost flat container —
+        // anything higher up has only one child (the whole block) and drags everything at once.
+        // Walk up from the item's own `.field-collection-item` wrapper to ITS parent, so this
+        // stays correct regardless of how many wrapper divs EasyAdmin/Symfony stack above it.
+        const container = items[0].closest('.field-collection-item').parentElement;
+        if (!container || container.dataset.sortableInitialized) {
+            return;
         }
+
+        container.dataset.sortableInitialized = 'true';
+        Sortable.create(container, {
+            handle: '.accordion-button',
+            animation: 150,
+            // native HTML5 drag often fails to start when the handle is a real <button>
+            // (Bootstrap's accordion toggle button intercepts the interaction)
+            forceFallback: true,
+        });
     }
 }
