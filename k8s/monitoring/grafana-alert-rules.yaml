@@ -310,3 +310,105 @@ groups:
           isPaused: false
           notification_settings:
             receiver: Discord
+        - uid: portfoliov3-symfony-down
+          title: API symfony-api indisponible
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: prometheus
+              model:
+                editorMode: code
+                expr: kube_deployment_status_replicas_available{namespace="portfoliov3-api", deployment="symfony-api"}
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+            - refId: C
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 1
+                        type: lt
+                      operator:
+                        type: and
+                      query:
+                        params: []
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          noDataState: OK
+          execErrState: Error
+          for: 1m
+          annotations:
+            description: 'kube_deployment_status_replicas_available = 0 : aucune réplique disponible pour symfony-api, l''API est down'
+            summary: L'API symfony-api n'a plus aucune réplique disponible
+          isPaused: false
+          notification_settings:
+            receiver: Discord
+        - uid: portfoliov3-front-down
+          title: Front nuxt-front indisponible
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: prometheus
+              model:
+                editorMode: code
+                expr: kube_deployment_status_replicas_available{namespace="portfoliov3-front", deployment="nuxt-front"}
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+            - refId: C
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 1
+                        type: lt
+                      operator:
+                        type: and
+                      query:
+                        params: []
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          noDataState: OK
+          execErrState: Error
+          for: 1m
+          annotations:
+            description: 'kube_deployment_status_replicas_available = 0 : aucune réplique disponible pour nuxt-front, le site est down'
+            summary: Le front nuxt-front n'a plus aucune réplique disponible
+          isPaused: false
+          notification_settings:
+            receiver: Discord

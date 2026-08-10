@@ -89,6 +89,27 @@ Le sidecar Grafana détecte le ConfigMap et charge les règles automatiquement (
 redémarrage nécessaire). Même principe que les `PodMonitor` : le projet possède sa
 configuration, l'infra ne fait que fournir le mécanisme de découverte.
 
+### Les 8 règles configurées
+
+| Règle | Métrique | Seuil | Pending |
+|---|---|---|---|
+| MariaDB inaccessible | `mysql_up` | `< 1` | immédiat |
+| PVC MariaDB > 80% | `kubelet_volume_stats_*` | `> 80%` | 5m |
+| Taux d'erreurs 4xx élevé | `portfoliov3_http_4xx_responses_total` | `> 10%` | 2m |
+| p95 dégradé | `portfoliov3_request_durations_histogram_seconds` | `> 2s` | 2m |
+| CPU nœud > 85% | `node_cpu_seconds_total` | `> 85%` | 5m |
+| RAM nœud > 90% | `node_memory_*` | `> 90%` | 5m |
+| API symfony-api indisponible | `kube_deployment_status_replicas_available{namespace="portfoliov3-api", deployment="symfony-api"}` | `== 0` | 1m |
+| Front nuxt-front indisponible | `kube_deployment_status_replicas_available{namespace="portfoliov3-front", deployment="nuxt-front"}` | `== 0` | 1m |
+
+Les deux dernières comblent un trou important : les règles 4xx/p95 utilisent `rate()`,
+qui ne renvoie **aucune donnée** (donc `noDataState: OK`, pas d'alerte) si l'API est
+totalement down et ne reçoit plus aucune requête. `kube_deployment_status_replicas_available`
+(fourni par `kube-state-metrics`, déjà activé dans la stack — aucune infra
+supplémentaire nécessaire) détecte directement "0 réplique disponible", qu'il y ait du
+trafic ou non. Le front (namespace `portfoliov3-front`, hors de ce repo) est couvert par
+la même règle bien qu'il n'expose aucune métrique applicative propre.
+
 ## Métriques disponibles
 
 ### Symfony (`artprima/prometheus-metrics-bundle`)
