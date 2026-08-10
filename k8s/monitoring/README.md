@@ -119,7 +119,11 @@ configuration, l'infra ne fait que fournir le mécanisme de découverte.
 | Dashboard | Source | Description |
 |---|---|---|
 | Symfony App Overview | `vendor/artprima/prometheus-metrics-bundle/grafana/symfony-app-overview.json` | Métriques HTTP Symfony |
-| MySQL Overview | Import ID `7362` sur grafana.com | Métriques MariaDB |
+| MySQL Exporter Quickstart and Dashboard | Import ID `14057` sur grafana.com | Métriques MariaDB |
+
+> ⚠️ L'ID `7362` ("MySQL Overview") ne fonctionne plus : dashboard ancien basé sur des
+> panels Singlestat, retirés de Grafana avec la suppression du support Angular
+> (erreur `Error loading: stat` sur les panels concernés). Utiliser `14057`.
 
 ### Importer le dashboard Symfony
 
@@ -130,5 +134,5 @@ configuration, l'infra ne fait que fournir le mécanisme de découverte.
 ### Importer le dashboard MariaDB
 
 1. **Dashboards → New → Import**
-2. ID : `7362`
+2. ID : `14057`
 3. Sélectionner la datasource Prometheus
