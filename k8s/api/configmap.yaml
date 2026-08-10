@@ -19,3 +19,6 @@ data:
 
     FRONTEND_URL: "https://jonathanlore.fr"
     API_URL: "https://api.jonathanlore.fr"
+
+    # Prometheus
+    PROM_METRICS_DSN: "apcu://localhost"

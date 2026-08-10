@@ -139,6 +139,39 @@ pipeline {
                 }
             }
         }
+        stage('Deploy Mysqld Exporter Secret') {
+            agent any
+            when { expression { env.GIT_BRANCH == 'origin/main' } }
+            steps {
+                withCredentials([
+                    file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE'),
+                    string(credentialsId: 'portfoliov3-mysqld-exporter-password', variable: 'EXPORTER_PASS')
+                ]) {
+                    sh '''
+                        export KUBECONFIG=$KUBECONFIG_FILE
+                        kubectl create secret generic mysqld-exporter-secret \
+                            --from-literal=DATA_SOURCE_NAME="exporter:$EXPORTER_PASS@tcp(mariadb:3306)/" \
+                            -n ${KUBE_NAMESPACE} \
+                            --dry-run=client -o yaml | kubectl apply -f -
+                        kubectl rollout restart deployment/mysqld-exporter -n ${KUBE_NAMESPACE} || true
+                    '''
+                }
+            }
+        }
+        stage('Deploy PodMonitors') {
+            agent any
+            when { expression { env.GIT_BRANCH == 'origin/main' } }
+            steps {
+                withCredentials([
+                    file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')
+                ]) {
+                    sh '''
+                        export KUBECONFIG=$KUBECONFIG_FILE
+                        kubectl apply -k k8s/monitoring/
+                    '''
+                }
+            }
+        }
         stage('Deploy to Kubernetes') {
             agent any
             when {
