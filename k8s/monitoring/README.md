@@ -59,11 +59,35 @@ modifié, l'Operator reconfigure Prometheus automatiquement — pas besoin de re
 
 ## Déploiement
 
-Géré automatiquement par le stage `Deploy PodMonitors` du Jenkinsfile de ce repo :
+Géré automatiquement par les stages `Deploy PodMonitors` et `Deploy Grafana Alert Rules` du Jenkinsfile de ce repo :
 
 ```bash
 kubectl apply -k k8s/monitoring/
 ```
+
+### Alertes Grafana (`grafana-alert-rules.yaml`)
+
+⚠️ Il n'existe **pas** de bouton "importer mon export Grafana" dans l'UI — le menu
+*Alerting → Import* (`/alerting/import-datasource-managed-rules`) sert à migrer des règles
+Prometheus/Mimir/Loki "datasource-managed", pas à recharger ce format natif Grafana.
+
+Les règles sont chargées via le **sidecar d'alerting** du chart `kube-prometheus-stack`
+(activé une fois pour toutes dans le repo infra, `monitoring/helm-values.yaml` →
+`grafana.sidecar.alerts`). Le stage `Deploy Grafana Alert Rules` crée un ConfigMap
+labellisé `grafana_alert: "1"` dans le namespace `monitoring` à partir de ce fichier :
+
+```bash
+kubectl create configmap portfoliov3-alert-rules \
+  --from-file=grafana-alert-rules.yaml=k8s/monitoring/grafana-alert-rules.yaml \
+  -n monitoring \
+  --dry-run=client -o yaml \
+  | kubectl label --local -f - grafana_alert=1 -o yaml \
+  | kubectl apply -f -
+```
+
+Le sidecar Grafana détecte le ConfigMap et charge les règles automatiquement (pas de
+redémarrage nécessaire). Même principe que les `PodMonitor` : le projet possède sa
+configuration, l'infra ne fait que fournir le mécanisme de découverte.
 
 ## Métriques disponibles
 

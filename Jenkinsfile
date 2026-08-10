@@ -172,6 +172,25 @@ pipeline {
                 }
             }
         }
+        stage('Deploy Grafana Alert Rules') {
+            agent any
+            when { expression { env.GIT_BRANCH == 'origin/main' } }
+            steps {
+                withCredentials([
+                    file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')
+                ]) {
+                    sh '''
+                        export KUBECONFIG=$KUBECONFIG_FILE
+                        kubectl create configmap portfoliov3-alert-rules \
+                            --from-file=grafana-alert-rules.yaml=k8s/monitoring/grafana-alert-rules.yaml \
+                            -n monitoring \
+                            --dry-run=client -o yaml \
+                            | kubectl label --local -f - grafana_alert=1 -o yaml \
+                            | kubectl apply -f -
+                    '''
+                }
+            }
+        }
         stage('Deploy to Kubernetes') {
             agent any
             when {
