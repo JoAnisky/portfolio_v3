@@ -163,12 +163,12 @@ groups:
           data:
             - refId: A
               relativeTimeRange:
-                from: 600
+                from: 1200
                 to: 0
               datasourceUid: prometheus
               model:
                 editorMode: code
-                expr: "histogram_quantile(0.95, \r\n  sum(rate(portfoliov3_request_durations_histogram_seconds_bucket[5m])) by (le)\r\n)"
+                expr: "histogram_quantile(0.95, \r\n  sum(rate(portfoliov3_request_durations_histogram_seconds_bucket[15m])) by (le)\r\n)\r\nand\r\nsum(increase(portfoliov3_request_durations_histogram_seconds_count[15m])) >= 5"
                 instant: true
                 intervalMs: 1000
                 legendFormat: __auto
@@ -181,7 +181,7 @@ groups:
                 conditions:
                     - evaluator:
                         params:
-                            - 2
+                            - 4
                         type: gt
                       operator:
                         type: and
@@ -201,9 +201,9 @@ groups:
                 type: threshold
           noDataState: OK
           execErrState: Error
-          for: 2m
+          for: 5m
           annotations:
-            description: 95% des requêtes prennent plus de 2 secondes — l'API est lente, vérifier la charge MariaDB et les pods
+            description: 95% des requêtes prennent plus de 4 secondes (sur au moins 5 requêtes en 15 min) — l'API est lente, vérifier la charge MariaDB et les pods
             summary: Temps de réponse p95 dégradé sur l'API
           isPaused: false
           notification_settings:
