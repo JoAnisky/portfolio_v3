@@ -29,8 +29,12 @@ pipeline {
             }
             steps {
                 container('php') {
+                    withCredentials([
+                        string(credentialsId: 'github-composer-token', variable: 'GITHUB_TOKEN')
+                    ]) {
                     sh '''
                         git config --global --add safe.directory '*'
+                        export COMPOSER_AUTH="{\\"github-oauth\\":{\\"github.com\\":\\"$GITHUB_TOKEN\\"}}"
 
                         echo "Attente de MariaDB..."
                         TRIES=0
@@ -58,6 +62,7 @@ pipeline {
                             --log-junit test-results/phpunit/junit.xml \
                             --testdox
                     '''
+                    }
                 }
             }
             post {
@@ -85,7 +90,8 @@ pipeline {
             agent any
             steps {
                 withCredentials([
-                    usernamePassword(credentialsId: 'jenkins-dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')
+                    usernamePassword(credentialsId: 'jenkins-dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS'),
+                    string(credentialsId: 'github-composer-token', variable: 'GITHUB_TOKEN')
                 ]) {
                     sh '''
                         docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -95,6 +101,7 @@ pipeline {
                             --target prod \
                             --build-arg APP_ENV=prod \
                             --build-arg APP_SECRET=dummysecret \
+                            --build-arg COMPOSER_AUTH="{\\"github-oauth\\":{\\"github.com\\":\\"$GITHUB_TOKEN\\"}}" \
                             -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
 
                         docker push ${DOCKER_IMAGE}:${DOCKER_TAG}

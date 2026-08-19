@@ -1,3 +1,5 @@
+ARG COMPOSER_AUTH=""
+
 # ============================
 # 1. Base commune
 # ============================
@@ -40,6 +42,7 @@ WORKDIR /var/www/html
 # 2. Dépendances PHP
 # ============================
 FROM base AS deps
+ARG COMPOSER_AUTH
 
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --prefer-dist --no-scripts --no-progress || true
@@ -59,6 +62,7 @@ COPY --chown=1000:1000 . .
 # ============================
 FROM deps AS prod
 
+ARG COMPOSER_AUTH
 ARG APP_ENV=prod
 ARG APP_SECRET=dummysecret
 ENV APP_ENV=${APP_ENV}
