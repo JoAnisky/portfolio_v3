@@ -5,6 +5,12 @@ spec:
 
     containers:
 
+        - name: jnlp
+          resources:
+              requests:
+                  memory: "128Mi"
+                  cpu: "20m"
+
         - name: php
           image: joanisky/portfoliov3-api:ci
           command: ["sleep", "infinity"]
@@ -14,7 +20,7 @@ spec:
           resources:
               requests:
                   memory: "512Mi"
-                  cpu: "250m"
+                  cpu: "100m"
               limits:
                   memory: "1Gi"
                   cpu: "500m"
@@ -31,7 +37,7 @@ spec:
           resources:
               requests:
                   memory: "256Mi"
-                  cpu: "100m"
+                  cpu: "50m"
               limits:
                   memory: "512Mi"
                   cpu: "250m"
